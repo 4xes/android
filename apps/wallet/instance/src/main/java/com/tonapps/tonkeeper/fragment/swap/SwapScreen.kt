@@ -56,10 +56,6 @@ class SwapScreen : BaseFragment(R.layout.fragment_swap), BaseFragment.BottomShee
         requireView().findViewById(R.id.swap)
     }
 
-    private val webView: StonfiWebView by lazy(LazyThreadSafetyMode.NONE) {
-        requireView().findViewById(R.id.web)
-    }
-
     private val confirmBtnView: Button by lazy(LazyThreadSafetyMode.NONE) {
         requireView().findViewById(R.id.confirm)
     }
@@ -89,17 +85,8 @@ class SwapScreen : BaseFragment(R.layout.fragment_swap), BaseFragment.BottomShee
         if (savedInstanceState == null) {
             swapViewMode.resetState()
         }
-        initWebView()
         initHeader()
         initSwap()
-    }
-
-    private fun initWebView() {
-        webView.jsBridge = StonfiBridge(
-            address = address,
-            close = ::finish,
-            sendTransaction = ::sing
-        )
     }
 
     private suspend fun sing(
